@@ -5,10 +5,12 @@
 //  Created by Abhijit Shanbhag on 16/03/25.
 //
 
-#include <iostream>
-
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+#include "stdio.h"
+#include "iostream"
+#include "omp.h"
+int main(void){
+#pragma omp parallel 
+    {
+        printf("Hello World\n");
+    }
 }

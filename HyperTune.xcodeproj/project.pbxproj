@@ -6,13 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AE263AF52D869D51002D569D /* libomp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AE263AF02D869D51002D569D /* libomp.dylib */; };
+		AE263AF62D869D68002D569D /* libomp.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = AE263AF02D869D51002D569D /* libomp.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		AE263AE22D869C33002D569D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = usr/share/man/man1;
+			dstSubfolderSpec = 10;
 			files = (
+				AE263AF62D869D68002D569D /* libomp.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -20,6 +26,10 @@
 
 /* Begin PBXFileReference section */
 		AE263AE42D869C33002D569D /* HyperTune */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HyperTune; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE263AF02D869D51002D569D /* libomp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libomp.dylib; sourceTree = "<group>"; };
+		AE263AF12D869D51002D569D /* omp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = omp.h; sourceTree = "<group>"; };
+		AE263AF22D869D51002D569D /* omp-tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "omp-tools.h"; sourceTree = "<group>"; };
+		AE263AF32D869D51002D569D /* ompt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ompt.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -35,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE263AF52D869D51002D569D /* libomp.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +55,7 @@
 		AE263ADB2D869C33002D569D = {
 			isa = PBXGroup;
 			children = (
+				AE263AF42D869D51002D569D /* openmp */,
 				AE263AE62D869C33002D569D /* HyperTune */,
 				AE263AE52D869C33002D569D /* Products */,
 			);
@@ -55,6 +67,17 @@
 				AE263AE42D869C33002D569D /* HyperTune */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AE263AF42D869D51002D569D /* openmp */ = {
+			isa = PBXGroup;
+			children = (
+				AE263AF02D869D51002D569D /* libomp.dylib */,
+				AE263AF12D869D51002D569D /* omp.h */,
+				AE263AF22D869D51002D569D /* omp-tools.h */,
+				AE263AF32D869D51002D569D /* ompt.h */,
+			);
+			path = openmp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +270,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V78LTDQ4JM;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/openmp\"";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/openmp",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-Xclang",
+					"-fopenmp",
+				);
+				OTHER_LDFLAGS = "-lomp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -257,6 +290,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V78LTDQ4JM;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/openmp\"";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/openmp",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-Xclang",
+					"-fopenmp",
+				);
+				OTHER_LDFLAGS = "-lomp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
