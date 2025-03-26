@@ -1,79 +1,81 @@
-# Plan of Action
+Y'all this isn't from me. It's literally from Claude, just trying to get a proper timelining on how can I work around this 
 
-#### **Week 1: Setup and Base Implementation (Days 1-7)**
 
-- **Day 1-2: Research & Environment Setup**
-   - **Research**: Quickly review OpenMP basics and hyperparameter tuning methods (Grid Search and Random Search).
-   - **Set Up Development Environment**:
-     - Install OpenMP-compatible C/C++ compiler (e.g., GCC with OpenMP support).
-     - Set up Python environment for machine learning models (e.g., Scikit-learn or MLpack).
-   - Make sure your machine is set up to utilize multi-core processing.
+## Updated 8-Day Implementation Plan (1.5 hours per day)
 
-- **Day 3-5: Implement Base Hyperparameter Tuning (Serial)**
-   - **Choose 1-2 machine learning models** (e.g., Decision Tree, SVM, or Random Forest) for hyperparameter tuning.
-   - Implement **Grid Search** (or **Random Search**) to tune a few hyperparameters of your selected model.
-   - **Test the Base Performance**: Ensure that the serial (non-parallel) implementation is correct and works well.
+## Day 1: Core Classes & MLPack Integration Setup (1.5 hours)
+- **0:00-0:30**: Implement `hyperparameter.hpp` and `hyperparameter.cpp`
+  - Define parameter types (categorical, numerical, etc.)
+  - Create methods for sampling values
+- **0:30-1:00**: Implement `modelInterface.hpp` as a generic wrapper
+  - Design a model-agnostic interface that can wrap MLPack models
+  - Create abstract methods for training and evaluation
+- **1:00-1:30**: Set up MLPack integration
+  - Create adapter classes to connect MLPack models to your interface
+  - Define conversion methods between your parameter format and MLPack's
 
-- **Day 6-7: Plan for Parallelization & OpenMP Introduction**
-   - Learn OpenMP directives like `#pragma omp parallel` for loops and tasks.
-   - **Prepare Parallelization Plan**: Decide where you will apply parallelism (e.g., parallelize the grid search by splitting configurations across threads).
-   - **Prototype OpenMP parallelization** for one simple loop (like evaluating hyperparameter configurations).
+## Day 2: Search Strategy Implementation (1.5 hours)
+- **0:00-0:30**: Implement `searchStrategy.hpp` base class
+  - Define virtual methods for generating configurations
+- **0:30-1:15**: Implement `randomSearch.hpp` and `randomSearch.cpp`
+  - Create random parameter sampling logic
+  - Ensure compatibility with different parameter types
+- **1:15-1:30**: Test random search with simple parameter spaces
 
----
+## Day 3: Tuner Implementation (1.5 hours)
+- **0:00-0:45**: Implement `tuner.hpp` and `tuner.cpp`
+  - Create methods for running trials and tracking results
+  - Ensure model-agnostic design
+- **0:45-1:15**: Add early stopping logic
+  - Implement configurable stopping criteria
+- **1:15-1:30**: Add initial MLPack example to verify integration
 
-#### **Week 2: Parallelization and Optimization (Days 8-14)**
+## Day 4: OpenMP Parallelization (1.5 hours)
+- **0:00-0:30**: Add OpenMP directives to the tuner class
+  - Parallelize trial execution with `#pragma omp parallel for`
+- **0:30-1:00**: Implement thread-safe result tracking
+  - Use atomic operations or critical sections
+- **1:00-1:30**: Add configuration options for controlling parallelism
+  - Number of threads, scheduling policy, chunk size options
 
-- **Day 8-10: Implement OpenMP Parallelization**
-   - **Parallelize the Hyperparameter Search**: Use OpenMP to parallelize the evaluation of hyperparameter combinations. 
-     - **Example**: Split the grid or random search tasks across multiple threads.
-   - **Ensure Thread Safety**: Check for thread contention and memory issues.
-   - **Test Parallel Code**: Run a few trials and verify correctness by comparing results with the serial version.
+## Day 5: Basic Bayesian Optimization Strategy (1.5 hours)
+- **0:00-0:30**: Create `bayesianSearch.hpp` and `bayesianSearch.cpp`
+  - Implement a simple Gaussian Process model
+- **0:30-1:00**: Implement acquisition function (Expected Improvement)
+  - Add logic to select the next best configuration
+- **1:00-1:30**: Integrate Bayesian optimization with the tuner class
+  - Allow switching between random and Bayesian strategies
 
-- **Day 11-13: Performance Optimization and Debugging**
-   - **Optimize Parallel Execution**: Fine-tune thread distribution, such as setting chunk sizes for loops using OpenMP features (e.g., `#pragma omp for schedule(static, chunk_size)`).
-   - **Debugging**: Ensure no race conditions or thread contention issues occur.
-   - **Test with Larger Configurations**: Run hyperparameter searches with a larger set of hyperparameters to ensure scalability.
-  
-- **Day 14: Basic Performance Comparison**
-   - **Measure the Execution Time** for both serial and parallel implementations.
-   - **Initial Benchmarking**: Record time saved by parallelization.
+## Day 6: Checkpointing & Model Abstraction (1.5 hours)
+- **0:00-0:30**: Implement serialization for saving tuning state
+  - Define serialization format for checkpoints
+- **0:30-1:00**: Implement save/load functionality
+  - Write methods to serialize/deserialize the current state
+- **1:00-1:30**: Enhance model abstraction for MLPack
+  - Add specific adapters for common MLPack models
+  - Ensure model-agnostic design maintains compatibility
 
----
+## Day 7: Results Visualization & MLPack Testing (1.5 hours)
+- **0:00-0:30**: Implement data export functionality
+  - Add methods to export results in CSV format
+- **0:30-1:00**: Create visualization utilities
+  - Generate performance plots and parameter importance charts
+- **1:00-1:30**: Test with multiple MLPack model types
+  - Verify that the framework works with different MLPack models
 
-#### **Week 3: Scalability Testing, Documentation, and Final Reporting (Days 15-20)**
+## Day 8: Final Integration & Documentation (1.5 hours)
+- **0:00-0:30**: Comprehensive testing of all components
+  - Verify parallel execution, Bayesian optimization, checkpointing
+- **0:30-1:00**: Complete documentation and API reference
+  - Document usage examples for all features
+- **1:00-1:30**: Create a complete example in `main.cpp`
+  - Showcase all features with MLPack models
 
-- **Day 15-16: Scalability Testing**
-   - Test performance on different numbers of threads/cores. 
-   - Measure how well the performance scales with the number of processor cores.
+To make this framework model-agnostic while supporting MLPack, you'll need to:
 
-- **Day 17-18: Documentation and Results Compilation**
-   - Write a **documentation** detailing the steps, how OpenMP is used for parallelization, and any challenges faced.
-   - Summarize **benchmark results**, including performance improvements with parallelization.
-   - Prepare visuals (graphs/tables) comparing serial vs parallel execution times.
+1. **Create a Generic Model Interface**: Design an abstract class that defines the minimal interface any model must implement (train, predict, evaluate).
 
-- **Day 19: Final Report and Presentation Preparation**
-   - **Compile Final Report**: Write a concise report including:
-     - Problem statement
-     - Methodology
-     - Results (benchmarking comparison)
-     - Challenges faced and how you overcame them
-   - Prepare a **brief presentation** summarizing the key points of your work.
-   
-- **Day 20: Final Testing and Submission**
-   - Conduct a **final round of testing** to ensure everything works smoothly.
-   - Submit the project with the **codebase, documentation, and presentation**.
+2. **Implement MLPack Adapters**: Create adapter classes that wrap MLPack models and implement your generic interface.
 
----
-** As suggested by ChatGPT **
-### **Key Tips for Time Management:**
-1. **Focus on One or Two Models**: Don’t try to tune too many models. Pick 1-2 models and focus on them to save time.
-2. **Use Simple Search Methods**: Stick with **Grid Search** or **Random Search** for simplicity—avoid more complex methods like Bayesian Optimization, which would require more effort to implement.
-3. **Test in Parallel Early**: Don’t wait until the end of the project to start testing parallelization—start small and gradually increase complexity.
-4. **Minimal Debugging Time**: Allocate a limited time for debugging—ensure it’s working but don’t go overboard on refinements that won’t provide significant gains.
+3. **Parameter Translation**: Include utilities to translate between your hyperparameter representation and MLPack's parameter format.
 
----
-
-### **Expected Deliverables**:
-1. **Parallelized Hyperparameter Tuning Code (C/C++ with OpenMP)**
-2. **Benchmarking Report**: Time comparison between serial and parallel versions.
-3. **Documentation**: A brief guide on how the OpenMP parallelization was implemented.
