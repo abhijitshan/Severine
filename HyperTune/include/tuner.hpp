@@ -34,7 +34,7 @@ struct TunerConfig{
     bool verbose=true;
     std::string checkpointFile="";
     int checkpointInteral=10;
-    EarlyStoppingStrategy earlyStopStra=EarlyStoppingStrategy::NONE;
+    EarlyStoppingStrategy earlyStopStrategy=EarlyStoppingStrategy::NONE;
     int earlyStoppingPatience=10;
     double earlyStoppingThreshold=0.95;
 };

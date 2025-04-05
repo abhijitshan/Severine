@@ -1,33 +1,72 @@
 This to test class integrations only. Not the implementation. It is not done yet
 
-abhijitshanbhag@Abhijits-MacBook-Pro HyperTune % ./test_random_search
+=== Starting HyperTune ===
+Creating search space...
+Adding hyperparameters...
+Setting up RNG...
+Creating model...
+Creating search strategy...
+Configuring tuner...
+Creating tuner...
+Running tuner...
+Iteration Count1/20
+ Score: 0.623867   |  Elapsed Time: 0s
 
-Generating 3 random configurations:
+Best Configration Score: 0.623867     Iteration: 0
+ num_layers: 2
+ use_batch_norm: false
+ learning_rate: 0.001019
+ activation: tanh
+Iteration Count2/20
+ Score: 0.781672   |  Elapsed Time: 0s
 
-Configuration 1:
-Configuration:
-  num_layers: 1
-  use_batch_norm: true
-  learning_rate: 0.0277061
-  activation: sigmoid
+Best Configration Score: 0.781672     Iteration: 1
+ num_layers: 3
+ use_batch_norm: false
+ learning_rate: 0.044978
+ activation: relu
+Iteration Count3/20
+ Score: 0.650457   |  Elapsed Time: 0s
 
-Configuration 2:
-Configuration:
-  num_layers: 2
-  use_batch_norm: true
-  learning_rate: 0.00322855
-  activation: tanh
+Best Configration Score: 0.781672     Iteration: 1
+ num_layers: 3
+ use_batch_norm: false
+ learning_rate: 0.044978
+ activation: relu
+Iteration Count4/20
+ Score: 0.720625   |  Elapsed Time: 0s
 
-Configuration 3:
-Configuration:
-  num_layers: 4
+Best Configration Score: 0.781672     Iteration: 1
+ num_layers: 3
+ use_batch_norm: false
+ learning_rate: 0.044978
+ activation: relu
+Iteration Count5/20
+ Score: 0.720713   |  Elapsed Time: 0s
+
+Best Configration Score: 0.781672     Iteration: 1
+ num_layers: 3
+ use_batch_norm: false
+ learning_rate: 0.044978
+ activation: relu
+Iteration Count6/20
+ Score: 0.630743   |  Elapsed Time: 0s
+
+Best Configration Score: 0.781672     Iteration: 1
+ num_layers: 3
+ use_batch_norm: false
+ learning_rate: 0.044978
+ activation: relu
+Iteration Count7/20
+ Score: 0.746989   |  Elapsed Time: 0s
+Early Stopping Triggered at Iteration 7
+Getting best result...
+
+Best configuration found:
+  num_layers: 3
   use_batch_norm: false
-  learning_rate: 0.00342455
+  learning_rate: 0.044978
   activation: relu
-
-Best configuration (score: 0.3):
-Configuration:
-  num_layers: 4
-  use_batch_norm: false
-  learning_rate: 0.00342455
-  activation: relu
+Score: 0.781672
+=== HyperTune completed ===
+Program ended with exit code: 0
