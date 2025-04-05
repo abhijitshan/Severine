@@ -14,7 +14,7 @@
 #include "memory"
 
 namespace hypertune {
-/// Configuration type for passing parameters
+/// Alias for configuration type for passing parameters
 using Config = std::unordered_map<std::string, std::variant<int, float, bool, std::string>>;
 
 /// Abstract Base Class for all the models
@@ -25,7 +25,7 @@ public:
     /// Train the model on a given data
     virtual void train()=0;
     
-    /// Evalutation mechanism. It'd be great if one of you already starts working on it from tomorrow (**27th of March, 2025**
+    /// Evalutation mechanism. It'd be great if one of you already starts working on it from tomorrow (**27th of March, 2025**)
     /// Naturally, in this case over here, higher value indicates better performance
     virtual double evaluate()=0;
     

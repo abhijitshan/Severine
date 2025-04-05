@@ -1,0 +1,33 @@
+This to test class integrations only. Not the implementation. It is not done yet
+
+abhijitshanbhag@Abhijits-MacBook-Pro HyperTune % ./test_random_search
+
+Generating 3 random configurations:
+
+Configuration 1:
+Configuration:
+  num_layers: 1
+  use_batch_norm: true
+  learning_rate: 0.0277061
+  activation: sigmoid
+
+Configuration 2:
+Configuration:
+  num_layers: 2
+  use_batch_norm: true
+  learning_rate: 0.00322855
+  activation: tanh
+
+Configuration 3:
+Configuration:
+  num_layers: 4
+  use_batch_norm: false
+  learning_rate: 0.00342455
+  activation: relu
+
+Best configuration (score: 0.3):
+Configuration:
+  num_layers: 4
+  use_batch_norm: false
+  learning_rate: 0.00342455
+  activation: relu
