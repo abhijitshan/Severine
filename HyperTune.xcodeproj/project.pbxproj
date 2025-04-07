@@ -35,6 +35,9 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		AE263AE62D869C33002D569D /* HyperTune */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+				"Current Run.txt" = text;
+			};
 			path = HyperTune;
 			sourceTree = "<group>";
 		};
