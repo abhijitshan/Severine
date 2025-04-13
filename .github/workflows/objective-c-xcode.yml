@@ -15,28 +15,86 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      - name: Check Xcode version
-        run: xcodebuild -version
+      - name: Check Xcode version and environment
+        run: |
+          xcodebuild -version
+          ls -la
+          echo "Current directory: $(pwd)"
       
       - name: Update Project Format
         run: |
+          # Remove PBXFileSystemSynchronizedRootGroup section which is causing the assertion failure
+          sed -i '' '/\/\* Begin PBXFileSystemSynchronizedRootGroup section \*\//,/\/\* End PBXFileSystemSynchronizedRootGroup section \*\//d' HyperTune.xcodeproj/project.pbxproj
+          
+          # Update references to fileSystemSynchronizedGroups in PBXNativeTarget section
+          sed -i '' '/fileSystemSynchronizedGroups/d' HyperTune.xcodeproj/project.pbxproj
+          
+          # Update Xcode version compatibility
           sed -i '' 's/objectVersion = 77;/objectVersion = 56;/' HyperTune.xcodeproj/project.pbxproj
           sed -i '' 's/preferredProjectObjectVersion = 77;/preferredProjectObjectVersion = 56;/' HyperTune.xcodeproj/project.pbxproj
           sed -i '' 's/LastUpgradeCheck = 1630;/LastUpgradeCheck = 1500;/' HyperTune.xcodeproj/project.pbxproj
           sed -i '' 's/MACOSX_DEPLOYMENT_TARGET = 15.2;/MACOSX_DEPLOYMENT_TARGET = 13.0;/' HyperTune.xcodeproj/project.pbxproj
+          
+          # Print project.pbxproj size to verify changes
+          ls -la HyperTune.xcodeproj/project.pbxproj
       
-      - name: Set Default Scheme
+      - name: Set Default Scheme with robust error handling
         run: |
+          # First try to list the schemes directly
+          echo "Available schemes:"
+          xcodebuild -list
+          
+          # Try to get JSON output with error handling
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
-          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-          echo $default | cat >default
-          echo Using default scheme: $default
+          
+          # Check if JSON output is empty
+          if [ -z "$scheme_list" ]; then
+            echo "Warning: xcodebuild -list -json returned no output."
+            # Fallback to a direct approach - use the project name as scheme
+            default="HyperTune"
+          else
+            # Try to parse with JSON error handling
+            default=$(echo "$scheme_list" | ruby -e "
+              require 'json'
+              begin
+                data = JSON.parse(STDIN.gets)
+                if data['project'] && data['project']['targets'] && !data['project']['targets'].empty?
+                  puts data['project']['targets'][0]
+                elsif data['project'] && data['project']['schemes'] && !data['project']['schemes'].empty?
+                  puts data['project']['schemes'][0]
+                else
+                  puts 'HyperTune'
+                end
+              rescue JSON::ParserError => e
+                puts 'HyperTune'
+                STDERR.puts \"JSON parsing error: #{e.message}\"
+              end
+            ")
+          fi
+          
+          echo "$default" > default
+          echo "Using default scheme: $default"
       
       - name: Build
         env:
           scheme: ${{ 'default' }}
         run: |
           if [ $scheme = default ]; then scheme=$(cat default); fi
-          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
+          echo "Building scheme: $scheme"
+          
+          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then 
+            filetype_parameter="workspace" 
+            file_to_build="`ls -A | grep -i \\.xcworkspace\$`"
+          else 
+            filetype_parameter="project" 
+            file_to_build="`ls -A | grep -i \\.xcodeproj\$`"
+          fi
+          
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
+          echo "Building $filetype_parameter: $file_to_build"
+          
+          # Build without analyze first to see if basic build works
+          xcodebuild clean build -scheme "$scheme" -"$filetype_parameter" "$file_to_build" || exit 1
+          
+          # If build succeeds, try with analyze
           xcodebuild clean build analyze -scheme "$scheme" -"$filetype_parameter" "$file_to_build" | xcpretty && exit ${PIPESTATUS[0]}
