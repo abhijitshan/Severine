@@ -1,23 +1,25 @@
 //
-//  exampleUsage.cpp
+//  main_bayesian.cpp
 //  HyperTune
 //
-//  Created on 07/04/25.
+//  Created on 18/04/25.
 //
 
 #include "include/hyperparameter.hpp"
-#include "include/randomSearch.hpp"
+#include "include/bayesianOptimization.hpp"
 #include "include/tuner.hpp"
 #include "include/modelAdapters.hpp"
+#include "include/randomSearch.hpp"
 #include <iostream>
 #include <memory>
 #include <random>
 #include <string>
 #include <vector>
+#include <chrono>
 
 using namespace hypertune;
 
-// Helper function to generate synthetic data
+// Helper function to generate synthetic data (reused from your main.cpp)
 void generateSyntheticData(
     std::vector<std::vector<double>>& X_train,
     std::vector<double>& y_train,
@@ -76,9 +78,9 @@ void generateSyntheticData(
     }
 }
 
-// Example usage for linear regression
-void tuneLinearRegression() {
-    std::cout << "=== Tuning Linear Regression ===" << std::endl;
+// Example 1: Tune Linear Regression with Bayesian Optimization
+void tuneLinearRegressionWithBayesianOpt() {
+    std::cout << "=== Tuning Linear Regression with Bayesian Optimization ===" << std::endl;
     
     // Generate synthetic data
     std::vector<std::vector<double>> X_train, X_test;
@@ -114,14 +116,14 @@ void tuneLinearRegression() {
     model->loadTrainingData(X_train, y_train);
     model->loadTestData(X_test, y_test);
     
-    // Create random search strategy
-    std::cout << "Creating search strategy..." << std::endl;
-    auto strategy = std::make_shared<RandomSearch>(searchSpace, rng);
+    // Create Bayesian Optimization search strategy
+    std::cout << "Creating Bayesian Optimization strategy..." << std::endl;
+    auto strategy = std::make_shared<BayesianOptimization>(searchSpace, rng, 5, 2.0);
     
     // Configure the tuner
     std::cout << "Configuring tuner..." << std::endl;
     TunerConfig tunerConfig;
-    tunerConfig.maxIterations = 10;
+    tunerConfig.maxIterations = 15;
     tunerConfig.numThreads = 4;
     tunerConfig.earlyStopStrategy = EarlyStoppingStrategy::NO_IMPROVEMENT;
     tunerConfig.earlyStoppingPatience = 3;
@@ -130,8 +132,11 @@ void tuneLinearRegression() {
     std::cout << "Creating tuner..." << std::endl;
     Tuner tuner(model, strategy, tunerConfig);
     
-    std::cout << "Running tuner..." << std::endl;
+    auto start = std::chrono::high_resolution_clock::now();
+    std::cout << "Running Bayesian Optimization tuner..." << std::endl;
     tuner.tune();
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
     
     // Get the best result
     std::cout << "Getting best result..." << std::endl;
@@ -151,11 +156,13 @@ void tuneLinearRegression() {
         std::cout << std::endl;
     }
     std::cout << "Score: " << best.score << std::endl;
+    std::cout << "Optimization completed in " << duration << " ms" << std::endl;
+    std::cout << std::endl;
 }
 
-// Example usage for random forest
-void tuneRandomForest() {
-    std::cout << "\n=== Tuning Random Forest ===" << std::endl;
+// Example 2: Tune Random Forest with Bayesian Optimization
+void tuneRandomForestWithBayesianOpt() {
+    std::cout << "=== Tuning Random Forest with Bayesian Optimization ===" << std::endl;
     
     // Generate synthetic data
     std::vector<std::vector<double>> X_train, X_test;
@@ -175,7 +182,7 @@ void tuneRandomForest() {
     searchSpace.addHyperparameter(
         std::make_shared<IntegerHyperparameter>("min_samples_split", 2, 20));
     searchSpace.addHyperparameter(
-        std::make_shared<IntegerHyperparameter>("max_features", -1, 10));
+        std::make_shared<IntegerHyperparameter>("max_features", 0, 10));
     
     // Set up RNG
     std::cout << "Setting up RNG..." << std::endl;
@@ -189,24 +196,27 @@ void tuneRandomForest() {
     model->loadTrainingData(X_train, y_train);
     model->loadTestData(X_test, y_test);
     
-    // Create random search strategy
-    std::cout << "Creating search strategy..." << std::endl;
-    auto strategy = std::make_shared<RandomSearch>(searchSpace, rng);
+    // Create Bayesian Optimization search strategy
+    std::cout << "Creating Bayesian Optimization strategy..." << std::endl;
+    auto strategy = std::make_shared<BayesianOptimization>(searchSpace, rng, 8, 1.5);
     
     // Configure the tuner
     std::cout << "Configuring tuner..." << std::endl;
     TunerConfig tunerConfig;
-    tunerConfig.maxIterations = 10;
+    tunerConfig.maxIterations = 20;
     tunerConfig.numThreads = 4;
     tunerConfig.earlyStopStrategy = EarlyStoppingStrategy::NO_IMPROVEMENT;
-    tunerConfig.earlyStoppingPatience = 3;
+    tunerConfig.earlyStoppingPatience = 5;
     
     // Create and run the tuner
     std::cout << "Creating tuner..." << std::endl;
     Tuner tuner(model, strategy, tunerConfig);
     
-    std::cout << "Running tuner..." << std::endl;
+    auto start = std::chrono::high_resolution_clock::now();
+    std::cout << "Running Bayesian Optimization tuner..." << std::endl;
     tuner.tune();
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
     
     // Get the best result
     std::cout << "Getting best result..." << std::endl;
@@ -226,17 +236,146 @@ void tuneRandomForest() {
         std::cout << std::endl;
     }
     std::cout << "Score: " << best.score << std::endl;
+    std::cout << "Optimization completed in " << duration << " ms" << std::endl;
+}
+
+// Compare Bayesian Optimization with Random Search
+void compareBayesianVsRandom() {
+    std::cout << "\n=== Comparing Bayesian Optimization vs Random Search ===" << std::endl;
+    
+    // Generate synthetic data
+    std::vector<std::vector<double>> X_train, X_test;
+    std::vector<double> y_train, y_test;
+    generateSyntheticData(X_train, y_train, X_test, y_test, 1500, 12, 0.15);
+    
+    // Create a search space
+    SearchSpace searchSpace;
+    
+    // Add hyperparameters (same for both methods)
+    searchSpace.addHyperparameter(
+        std::make_shared<FloatHyperparameter>("C", 0.01f, 100.0f,
+                                           FloatHyperparameter::Distribution::LOG_UNIFORM));
+    searchSpace.addHyperparameter(
+        std::make_shared<FloatHyperparameter>("gamma", 0.001f, 10.0f,
+                                           FloatHyperparameter::Distribution::LOG_UNIFORM));
+    searchSpace.addHyperparameter(
+        std::make_shared<FloatHyperparameter>("epsilon", 0.01f, 1.0f,
+                                           FloatHyperparameter::Distribution::UNIFORM));
+    searchSpace.addHyperparameter(
+        std::make_shared<CategoricalHyperparameter>(
+            "kernel", std::vector<std::string>{"linear", "rbf"}));
+    
+    // Set up RNG with fixed seed for fair comparison
+    unsigned seed = 12345;
+    std::mt19937 rng(seed);
+    
+    // Configure tuner settings (same for both methods)
+    TunerConfig tunerConfig;
+    tunerConfig.maxIterations = 25;
+    tunerConfig.numThreads = 4;
+    tunerConfig.earlyStopStrategy = EarlyStoppingStrategy::NONE; // Disable early stopping for fair comparison
+    
+    // First, run Random Search
+    std::cout << "\nRunning Random Search..." << std::endl;
+    
+    auto modelRandom = std::make_shared<SVMAdapter>();
+    modelRandom->setVerbose(false); // Reduce output verbosity
+    modelRandom->loadTrainingData(X_train, y_train);
+    modelRandom->loadTestData(X_test, y_test);
+    
+    auto randomStrategy = std::make_shared<RandomSearch>(searchSpace, rng);
+    Tuner randomTuner(modelRandom, randomStrategy, tunerConfig);
+    
+    auto randomStart = std::chrono::high_resolution_clock::now();
+    randomTuner.tune();
+    auto randomEnd = std::chrono::high_resolution_clock::now();
+    auto randomDuration = std::chrono::duration_cast<std::chrono::milliseconds>(randomEnd - randomStart).count();
+    
+    const EvaluationResult& randomBest = randomTuner.getBestResult();
+    
+    // Next, run Bayesian Optimization
+    std::cout << "\nRunning Bayesian Optimization..." << std::endl;
+    
+    // Reset RNG with same seed for fair comparison
+    rng.seed(seed);
+    
+    auto modelBayes = std::make_shared<SVMAdapter>();
+    modelBayes->setVerbose(false); // Reduce output verbosity
+    modelBayes->loadTrainingData(X_train, y_train);
+    modelBayes->loadTestData(X_test, y_test);
+    
+    auto bayesStrategy = std::make_shared<BayesianOptimization>(searchSpace, rng, 5, 2.0);
+    Tuner bayesTuner(modelBayes, bayesStrategy, tunerConfig);
+    
+    auto bayesStart = std::chrono::high_resolution_clock::now();
+    bayesTuner.tune();
+    auto bayesEnd = std::chrono::high_resolution_clock::now();
+    auto bayesDuration = std::chrono::duration_cast<std::chrono::milliseconds>(bayesEnd - bayesStart).count();
+    
+    const EvaluationResult& bayesBest = bayesTuner.getBestResult();
+    
+    // Print comparison results
+    std::cout << "\n=== Optimization Results Comparison ===" << std::endl;
+    
+    std::cout << "\nRandom Search Results:" << std::endl;
+    std::cout << "  Best Score: " << randomBest.score << std::endl;
+    std::cout << "  Execution Time: " << randomDuration << " ms" << std::endl;
+    std::cout << "  Best Configuration:" << std::endl;
+    for (const auto& [name, value] : randomBest.configuration) {
+        std::cout << "    " << name << ": ";
+        if (std::holds_alternative<int>(value)) {
+            std::cout << std::get<int>(value);
+        } else if (std::holds_alternative<float>(value)) {
+            std::cout << std::get<float>(value);
+        } else if (std::holds_alternative<bool>(value)) {
+            std::cout << (std::get<bool>(value) ? "true" : "false");
+        } else if (std::holds_alternative<std::string>(value)) {
+            std::cout << std::get<std::string>(value);
+        }
+        std::cout << std::endl;
+    }
+    
+    std::cout << "\nBayesian Optimization Results:" << std::endl;
+    std::cout << "  Best Score: " << bayesBest.score << std::endl;
+    std::cout << "  Execution Time: " << bayesDuration << " ms" << std::endl;
+    std::cout << "  Best Configuration:" << std::endl;
+    for (const auto& [name, value] : bayesBest.configuration) {
+        std::cout << "    " << name << ": ";
+        if (std::holds_alternative<int>(value)) {
+            std::cout << std::get<int>(value);
+        } else if (std::holds_alternative<float>(value)) {
+            std::cout << std::get<float>(value);
+        } else if (std::holds_alternative<bool>(value)) {
+            std::cout << (std::get<bool>(value) ? "true" : "false");
+        } else if (std::holds_alternative<std::string>(value)) {
+            std::cout << std::get<std::string>(value);
+        }
+        std::cout << std::endl;
+    }
+    
+    // Performance comparison
+    double scoreDiff = bayesBest.score - randomBest.score;
+    double timeDiff = static_cast<double>(bayesDuration - randomDuration) / randomDuration * 100.0;
+    
+    std::cout << "\nPerformance Difference:" << std::endl;
+    std::cout << "  Score Improvement: " << (scoreDiff >= 0 ? "+" : "") << scoreDiff
+              << " (" << (scoreDiff >= 0 ? "+" : "") << (scoreDiff / std::abs(randomBest.score) * 100.0)
+              << "%)" << std::endl;
+    std::cout << "  Time Difference: " << (timeDiff >= 0 ? "+" : "") << timeDiff << "%" << std::endl;
 }
 
 int main() {
-    std::cout << "=== Starting HyperTune Model Examples ===" << std::endl;
+    std::cout << "=== Starting HyperTune Bayesian Optimization Examples ===" << std::endl;
     
-    // Tune Linear Regression
-    tuneLinearRegression();
+    // Tune Linear Regression with Bayesian Optimization
+    tuneLinearRegressionWithBayesianOpt();
     
-    // Tune Random Forest
-    tuneRandomForest();
+    // Tune Random Forest with Bayesian Optimization
+    tuneRandomForestWithBayesianOpt();
     
-    std::cout << "=== HyperTune examples completed ===" << std::endl;
+    // Compare Bayesian Optimization with Random Search
+    compareBayesianVsRandom();
+    
+    std::cout << "\n=== HyperTune Bayesian Optimization Examples completed ===" << std::endl;
     return 0;
 }

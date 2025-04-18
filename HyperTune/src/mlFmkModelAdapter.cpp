@@ -9,7 +9,6 @@
 #include <stdexcept>
 #include <iostream>
 #include <chrono>
-
 namespace hypertune {
 
 /// Implementing the templates defined in `modelInterface.hpp`
