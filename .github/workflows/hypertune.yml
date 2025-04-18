@@ -1,0 +1,123 @@
+name: HyperTune CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install dependencies
+      run: |
+        brew install libomp
+        
+    - name: Build with Make
+      run: |
+        make
+        
+    - name: Run tests
+      run: |
+        ./HyperTune --test
+        
+    - name: Upload executable
+      uses: actions/upload-artifact@v3
+      with:
+        name: hypertune-macos
+        path: HyperTune
+        
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libomp-dev
+        
+    - name: Build with Make
+      run: |
+        make
+        
+    - name: Run tests
+      run: |
+        ./HyperTune --test
+        
+    - name: Upload executable
+      uses: actions/upload-artifact@v3
+      with:
+        name: hypertune-ubuntu
+        path: HyperTune
+        
+  # Optional: Add Windows build if needed
+  build-windows:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup MSVC
+      uses: microsoft/setup-msbuild@v1.1
+      
+    - name: Install dependencies
+      run: |
+        # Assuming you have a vcpkg setup described in WinSetupGuide.md
+        # This is a placeholder and might need adjustment based on your actual setup
+        if (!(Test-Path -Path "C:\vcpkg")) {
+          git clone https://github.com/Microsoft/vcpkg.git C:\vcpkg
+          cd C:\vcpkg
+          .\bootstrap-vcpkg.bat
+        }
+        C:\vcpkg\vcpkg install libomp:x64-windows
+      shell: pwsh
+        
+    - name: Build with Make or CMake
+      run: |
+        # If you have a Makefile that works on Windows:
+        # make
+        # Or using CMake (if available):
+        # mkdir build
+        # cd build
+        # cmake ..
+        # cmake --build .
+        
+        # For now, just demonstrate how to compile manually using MSVC
+        cl.exe /EHsc /openmp /Ivcpkg\installed\x64-windows\include /Iopenmp .\HyperTune\main.cpp .\HyperTune\src\*.cpp /link /LIBPATH:vcpkg\installed\x64-windows\lib /OUT:HyperTune.exe
+      shell: cmd
+        
+    - name: Upload executable
+      uses: actions/upload-artifact@v3
+      with:
+        name: hypertune-windows
+        path: HyperTune.exe
+        
+  release:
+    needs: [build-macos, build-ubuntu, build-windows]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Download all artifacts
+      uses: actions/download-artifact@v3
+      
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          hypertune-macos/HyperTune
+          hypertune-ubuntu/HyperTune
+          hypertune-windows/HyperTune.exe
+        name: Release ${{ github.sha }}
+        tag_name: v${{ github.run_number }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
