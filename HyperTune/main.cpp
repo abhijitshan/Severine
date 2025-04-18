@@ -19,7 +19,7 @@
 
 using namespace hypertune;
 
-// Helper function to generate synthetic data (reused from your main.cpp)
+// Helper function to generate synthetic data
 void generateSyntheticData(
     std::vector<std::vector<double>>& X_train,
     std::vector<double>& y_train,
