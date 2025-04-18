@@ -131,9 +131,6 @@ HyperTune requires:
 If you are using Xcode, the project is as simple as using Configured XcodeProj Scheme Configurations and running it! 
 
 ## Future Enhancements
-
-- Additional search strategies (Bayesian Optimization, Evolution Strategies)
-- GPU acceleration for model training
 - Distributed evaluation across multiple machines
 - Integration with popular ML frameworks
 - More sophisticated early stopping techniques
