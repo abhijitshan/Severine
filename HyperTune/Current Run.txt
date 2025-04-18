@@ -1,419 +1,852 @@
-=== Starting HyperTune Model Examples ===
-=== Tuning Linear Regression ===
+=== Starting HyperTune Bayesian Optimization Examples ===
+=== Tuning Linear Regression with Bayesian Optimization ===
 Creating search space...
 Adding hyperparameters...
 Setting up RNG...
 Creating model...
 Loaded training data: 1000 samples, 10 features
 Loaded test data: 200 samples, 10 features
-Creating search strategy...
+Creating Bayesian Optimization strategy...
 Configuring tuner...
 Creating tuner...
-Running tuner...
-Iteration Count1/10
-Linear Regression configured with:
-  fit_intercept: true
-  alpha: 0.193419
-  solver: sgd
-  max_iter: 1895
-Model Configured with Hyperparameters:
-  fit_intercept: true
-  alpha: 0.193419
-  solver: sgd
-  max_iter: 1895
-Linear Regression model trained with 10 features and 1000 samples
-Training Completed in 569 ms
-Model evaluation metrics:
-  R^2: 0.859325
-  MSE: 0.265888
-  RMSE: 0.515644
-  MAE: 0.408477
-Evaluation Completed in 0 ms
-Score Obtained:         0.859325
- Score: 0.859325   |  Elapsed Time: 0s
-
-Best Configration Score: 0.859325     Iteration: 0
- fit_intercept: true
- alpha: 0.193419
- solver: sgd
- max_iter: 1895
-Iteration Count2/10
-Linear Regression configured with:
-  fit_intercept: true
-  alpha: 0.078636
-  solver: normal_equation
-  max_iter: 1290
-Model Configured with Hyperparameters:
-  fit_intercept: true
-  alpha: 0.078636
-  solver: normal_equation
-  max_iter: 1290
-Linear Regression model trained with 10 features and 1000 samples
-Training Completed in 0 ms
-Model evaluation metrics:
-  R^2: 0.859381
-  MSE: 0.265781
-  RMSE: 0.515540
-  MAE: 0.408684
-Evaluation Completed in 0 ms
-Score Obtained:         0.859381
- Score: 0.859381   |  Elapsed Time: 0s
-
-Best Configration Score: 0.859381     Iteration: 1
- fit_intercept: true
- alpha: 0.078636
- solver: normal_equation
- max_iter: 1290
-Iteration Count3/10
-Linear Regression configured with:
-  fit_intercept: true
-  alpha: 0.009029
-  solver: sgd
-  max_iter: 825
-Model Configured with Hyperparameters:
-  fit_intercept: true
-  alpha: 0.009029
-  solver: sgd
-  max_iter: 825
-Linear Regression model trained with 10 features and 1000 samples
-Training Completed in 249 ms
-Model evaluation metrics:
-  R^2: 0.994847
-  MSE: 0.009739
-  RMSE: 0.098686
-  MAE: 0.077816
-Evaluation Completed in 0 ms
-Score Obtained:         0.994847
- Score: 0.994847   |  Elapsed Time: 0s
-
-Best Configration Score: 0.994847     Iteration: 2
- fit_intercept: true
- alpha: 0.009029
- solver: sgd
- max_iter: 825
-Iteration Count4/10
-Linear Regression configured with:
-  fit_intercept: true
-  alpha: 0.006954
-  solver: sgd
-  max_iter: 1177
-Model Configured with Hyperparameters:
-  fit_intercept: true
-  alpha: 0.006954
-  solver: sgd
-  max_iter: 1177
-Linear Regression model trained with 10 features and 1000 samples
-Training Completed in 354 ms
-Model evaluation metrics:
-  R^2: 0.995307
-  MSE: 0.008870
-  RMSE: 0.094183
-  MAE: 0.076721
-Evaluation Completed in 0 ms
-Score Obtained:         0.995307
- Score: 0.995307   |  Elapsed Time: 1s
-
-Best Configration Score: 0.995307     Iteration: 3
- fit_intercept: true
- alpha: 0.006954
- solver: sgd
- max_iter: 1177
-Iteration Count5/10
-Linear Regression configured with:
-  fit_intercept: true
-  alpha: 0.000999
-  solver: normal_equation
-  max_iter: 764
-Model Configured with Hyperparameters:
-  fit_intercept: true
-  alpha: 0.000999
-  solver: normal_equation
-  max_iter: 764
-Linear Regression model trained with 10 features and 1000 samples
-Training Completed in 0 ms
-Model evaluation metrics:
-  R^2: 0.995397
-  MSE: 0.008701
-  RMSE: 0.093277
-  MAE: 0.075469
-Evaluation Completed in 0 ms
-Score Obtained:         0.995397
- Score: 0.995397   |  Elapsed Time: 1s
-
-Best Configration Score: 0.995397     Iteration: 4
- fit_intercept: true
- alpha: 0.000999
- solver: normal_equation
- max_iter: 764
-Iteration Count6/10
+Running Bayesian Optimization tuner...
+Iteration Count1/15
 Linear Regression configured with:
   fit_intercept: false
-  alpha: 0.000160
-  solver: normal_equation
-  max_iter: 328
+  alpha: 0.0247335
+  solver: sgd
+  max_iter: 1654
 Model Configured with Hyperparameters:
   fit_intercept: false
-  alpha: 0.000160
-  solver: normal_equation
-  max_iter: 328
-Linear Regression model trained with 10 features and 1000 samples
-Training Completed in 0 ms
-Model evaluation metrics:
-  R^2: 0.995397
-  MSE: 0.008701
-  RMSE: 0.093277
-  MAE: 0.075469
-Evaluation Completed in 0 ms
-Score Obtained:         0.995397
- Score: 0.995397   |  Elapsed Time: 1s
-
-Best Configration Score: 0.995397     Iteration: 4
- fit_intercept: true
- alpha: 0.000999
- solver: normal_equation
- max_iter: 764
-Iteration Count7/10
-Linear Regression configured with:
-  fit_intercept: false
-  alpha: 0.007178
+  alpha: 0.0247335
   solver: sgd
-  max_iter: 1863
-Model Configured with Hyperparameters:
-  fit_intercept: false
-  alpha: 0.007178
-  solver: sgd
-  max_iter: 1863
+  max_iter: 1654
 Linear Regression model trained with 10 features and 1000 samples
-Training Completed in 557 ms
+Training Completed in 493 ms
 Model evaluation metrics:
-  R^2: 0.995545
-  MSE: 0.008420
-  RMSE: 0.091759
-  MAE: 0.073457
+  R^2: 0.98523
+  MSE: 0.0179198
+  RMSE: 0.133865
+  MAE: 0.107785
 Evaluation Completed in 0 ms
-Score Obtained:         0.995545
- Score: 0.995545   |  Elapsed Time: 1s
+Score Obtained:         0.98523
+ Score: 0.985230   |  Elapsed Time: 0s
 
-Best Configration Score: 0.995545     Iteration: 6
+Best Configration Score: 0.985230     Iteration: 0
  fit_intercept: false
- alpha: 0.007178
+ alpha: 0.024734
  solver: sgd
- max_iter: 1863
-Iteration Count8/10
+ max_iter: 1654
+Iteration Count2/15
 Linear Regression configured with:
-  fit_intercept: false
-  alpha: 0.003057
+  fit_intercept: true
+  alpha: 0.000779
   solver: sgd
-  max_iter: 1589
+  max_iter: 926
 Model Configured with Hyperparameters:
-  fit_intercept: false
-  alpha: 0.003057
+  fit_intercept: true
+  alpha: 0.000779
   solver: sgd
-  max_iter: 1589
+  max_iter: 926
 Linear Regression model trained with 10 features and 1000 samples
-Training Completed in 473 ms
+Training Completed in 277 ms
 Model evaluation metrics:
-  R^2: 0.995823
-  MSE: 0.007895
-  RMSE: 0.088854
-  MAE: 0.071799
+  R^2: 0.992135
+  MSE: 0.009542
+  RMSE: 0.097683
+  MAE: 0.075224
 Evaluation Completed in 0 ms
-Score Obtained:         0.995823
- Score: 0.995823   |  Elapsed Time: 2s
+Score Obtained:         0.992135
+ Score: 0.992135   |  Elapsed Time: 0s
 
-Best Configration Score: 0.995823     Iteration: 7
- fit_intercept: false
- alpha: 0.003057
+Best Configration Score: 0.992135     Iteration: 1
+ fit_intercept: true
+ alpha: 0.000779
  solver: sgd
- max_iter: 1589
-Iteration Count9/10
+ max_iter: 926
+Iteration Count3/15
 Linear Regression configured with:
   fit_intercept: true
-  alpha: 0.003712
-  solver: normal_equation
-  max_iter: 813
+  alpha: 0.000298
+  solver: sgd
+  max_iter: 1667
 Model Configured with Hyperparameters:
   fit_intercept: true
-  alpha: 0.003712
+  alpha: 0.000298
+  solver: sgd
+  max_iter: 1667
+Linear Regression model trained with 10 features and 1000 samples
+Training Completed in 499 ms
+Model evaluation metrics:
+  R^2: 0.992002
+  MSE: 0.009704
+  RMSE: 0.098507
+  MAE: 0.075639
+Evaluation Completed in 0 ms
+Score Obtained:         0.992002
+ Score: 0.992002   |  Elapsed Time: 1s
+
+Best Configration Score: 0.992135     Iteration: 1
+ fit_intercept: true
+ alpha: 0.000779
+ solver: sgd
+ max_iter: 926
+Iteration Count4/15
+Linear Regression configured with:
+  fit_intercept: false
+  alpha: 1.427377
+  solver: sgd
+  max_iter: 352
+Model Configured with Hyperparameters:
+  fit_intercept: false
+  alpha: 1.427377
+  solver: sgd
+  max_iter: 352
+Linear Regression model trained with 10 features and 1000 samples
+Training Completed in 104 ms
+Model evaluation metrics:
+  R^2: 0.297923
+  MSE: 0.851784
+  RMSE: 0.922922
+  MAE: 0.743088
+Evaluation Completed in 0 ms
+Score Obtained:         0.297923
+ Score: 0.297923   |  Elapsed Time: 1s
+
+Best Configration Score: 0.992135     Iteration: 1
+ fit_intercept: true
+ alpha: 0.000779
+ solver: sgd
+ max_iter: 926
+Iteration Count5/15
+Linear Regression configured with:
+  fit_intercept: true
+  alpha: 5.309535
   solver: normal_equation
-  max_iter: 813
+  max_iter: 1857
+Model Configured with Hyperparameters:
+  fit_intercept: true
+  alpha: 5.309535
+  solver: normal_equation
+  max_iter: 1857
 Linear Regression model trained with 10 features and 1000 samples
 Training Completed in 0 ms
 Model evaluation metrics:
-  R^2: 0.995823
-  MSE: 0.007895
-  RMSE: 0.088854
-  MAE: 0.071799
+  R^2: 0.297923
+  MSE: 0.851784
+  RMSE: 0.922922
+  MAE: 0.743088
 Evaluation Completed in 0 ms
-Score Obtained:         0.995823
- Score: 0.995823   |  Elapsed Time: 2s
-
-Best Configration Score: 0.995823     Iteration: 7
- fit_intercept: false
- alpha: 0.003057
- solver: sgd
- max_iter: 1589
-Iteration Count10/10
-Linear Regression configured with:
-  fit_intercept: true
-  alpha: 0.006808
-  solver: normal_equation
-  max_iter: 906
-Model Configured with Hyperparameters:
-  fit_intercept: true
-  alpha: 0.006808
-  solver: normal_equation
-  max_iter: 906
-Linear Regression model trained with 10 features and 1000 samples
-Training Completed in 0 ms
-Model evaluation metrics:
-  R^2: 0.995823
-  MSE: 0.007895
-  RMSE: 0.088854
-  MAE: 0.071799
-Evaluation Completed in 0 ms
-Score Obtained:         0.995823
- Score: 0.995823   |  Elapsed Time: 2s
-
-Best Configration Score: 0.995823     Iteration: 7
- fit_intercept: false
- alpha: 0.003057
- solver: sgd
- max_iter: 1589
+Score Obtained:         0.297923
+ Score: 0.297923   |  Elapsed Time: 1s
+Early Stopping Triggered at Iteration 5
 Getting best result...
 
 Best configuration found:
-  fit_intercept: false
-  alpha: 0.003057
+  fit_intercept: true
+  alpha: 0.000779
   solver: sgd
-  max_iter: 1589
-Score: 0.995823
+  max_iter: 926
+Score: 0.992135
+Optimization completed in 1375 ms
 
-=== Tuning Random Forest ===
+=== Tuning Random Forest with Bayesian Optimization ===
 Creating search space...
 Adding hyperparameters...
 Setting up RNG...
 Creating model...
 Loaded training data: 1000 samples, 10 features
 Loaded test data: 200 samples, 10 features
-Creating search strategy...
+Creating Bayesian Optimization strategy...
 Configuring tuner...
 Creating tuner...
-Running tuner...
-Iteration Count1/10
+Running Bayesian Optimization tuner...
+Iteration Count1/20
 Random Forest configured with:
-  n_estimators: 132
-  max_depth: 7
-  min_samples_split: 10
-  max_features: 5
-  criterion: mse
-Model Configured with Hyperparameters:
-  n_estimators: 132
-  max_depth: 7
-  min_samples_split: 10
-  max_features: 5
-Random Forest trained with 132 trees using 10 features and 1000 samples
-Training Completed in 11 ms
-Random Forest evaluation metrics:
-  R^2: -0.030246
-  MSE: 1.467257
-  RMSE: 1.211304
-  MAE: 0.957271
-Evaluation Completed in 1 ms
-Score Obtained:         -0.030246
- Score: -0.030246   |  Elapsed Time: 0s
-
-Best Configration Score: -0.030246     Iteration: 0
- n_estimators: 132
- max_depth: 7
- min_samples_split: 10
- max_features: 5
-Iteration Count2/10
-Random Forest configured with:
-  n_estimators: 129
-  max_depth: 3
-  min_samples_split: 4
-  max_features: 0
-  criterion: mse
-Model Configured with Hyperparameters:
-  n_estimators: 129
-  max_depth: 3
-  min_samples_split: 4
-  max_features: 0
-Random Forest trained with 129 trees using 10 features and 1000 samples
-Training Completed in 6 ms
-Random Forest evaluation metrics:
-  R^2: -0.043000
-  MSE: 1.485420
-  RMSE: 1.218778
-  MAE: 0.952050
-Evaluation Completed in 1 ms
-Score Obtained:         -0.043000
- Score: -0.043000   |  Elapsed Time: 0s
-
-Best Configration Score: -0.030246     Iteration: 0
- n_estimators: 132
- max_depth: 7
- min_samples_split: 10
- max_features: 5
-Iteration Count3/10
-Random Forest configured with:
-  n_estimators: 125
+  n_estimators: 172
   max_depth: 16
-  min_samples_split: 10
-  max_features: 5
+  min_samples_split: 4
+  max_features: 1
   criterion: mse
 Model Configured with Hyperparameters:
-  n_estimators: 125
+  n_estimators: 172
   max_depth: 16
-  min_samples_split: 10
-  max_features: 5
-Random Forest trained with 125 trees using 10 features and 1000 samples
-Training Completed in 10 ms
+  min_samples_split: 4
+  max_features: 1
+Random Forest trained with 172 trees using 10 features and 1000 samples
+Training Completed in 15 ms
 Random Forest evaluation metrics:
-  R^2: -0.136358
-  MSE: 1.618379
-  RMSE: 1.272155
-  MAE: 0.999065
-Evaluation Completed in 1 ms
-Score Obtained:         -0.136358
- Score: -0.136358   |  Elapsed Time: 0s
+  R^2: -0.070194
+  MSE: 1.737304
+  RMSE: 1.318068
+  MAE: 1.055989
+Evaluation Completed in 2 ms
+Score Obtained:         -0.070194
+ Score: -0.070194   |  Elapsed Time: 0s
 
-Best Configration Score: -0.030246     Iteration: 0
- n_estimators: 132
- max_depth: 7
- min_samples_split: 10
- max_features: 5
-Iteration Count4/10
+Best Configration Score: -0.070194     Iteration: 0
+ n_estimators: 172
+ max_depth: 16
+ min_samples_split: 4
+ max_features: 1
+Iteration Count2/20
 Random Forest configured with:
-  n_estimators: 11
-  max_depth: 5
-  min_samples_split: 15
-  max_features: 10
+  n_estimators: 14
+  max_depth: 15
+  min_samples_split: 6
+  max_features: 2
   criterion: mse
 Model Configured with Hyperparameters:
-  n_estimators: 11
-  max_depth: 5
-  min_samples_split: 15
-  max_features: 10
-Random Forest trained with 11 trees using 10 features and 1000 samples
+  n_estimators: 14
+  max_depth: 15
+  min_samples_split: 6
+  max_features: 2
+Random Forest trained with 14 trees using 10 features and 1000 samples
 Training Completed in 1 ms
 Random Forest evaluation metrics:
-  R^2: -0.440461
-  MSE: 2.051476
-  RMSE: 1.432297
-  MAE: 1.184076
+  R^2: -0.096102
+  MSE: 1.779361
+  RMSE: 1.333927
+  MAE: 1.063733
 Evaluation Completed in 0 ms
-Score Obtained:         -0.440461
- Score: -0.440461   |  Elapsed Time: 0s
-Early Stopping Triggered at Iteration 4
+Score Obtained:         -0.096102
+ Score: -0.096102   |  Elapsed Time: 0s
+
+Best Configration Score: -0.070194     Iteration: 0
+ n_estimators: 172
+ max_depth: 16
+ min_samples_split: 4
+ max_features: 1
+Iteration Count3/20
+Random Forest configured with:
+  n_estimators: 195
+  max_depth: 16
+  min_samples_split: 10
+  max_features: 1
+  criterion: mse
+Model Configured with Hyperparameters:
+  n_estimators: 195
+  max_depth: 16
+  min_samples_split: 10
+  max_features: 1
+Random Forest trained with 195 trees using 10 features and 1000 samples
+Training Completed in 16 ms
+Random Forest evaluation metrics:
+  R^2: -0.033342
+  MSE: 1.677479
+  RMSE: 1.295175
+  MAE: 1.044557
+Evaluation Completed in 2 ms
+Score Obtained:         -0.033342
+ Score: -0.033342   |  Elapsed Time: 0s
+
+Best Configration Score: -0.033342     Iteration: 2
+ n_estimators: 195
+ max_depth: 16
+ min_samples_split: 10
+ max_features: 1
+Iteration Count4/20
+Random Forest configured with:
+  n_estimators: 67
+  max_depth: 16
+  min_samples_split: 12
+  max_features: 1
+  criterion: mse
+Model Configured with Hyperparameters:
+  n_estimators: 67
+  max_depth: 16
+  min_samples_split: 12
+  max_features: 1
+Random Forest trained with 67 trees using 10 features and 1000 samples
+Training Completed in 5 ms
+Random Forest evaluation metrics:
+  R^2: 0.007561
+  MSE: 1.611079
+  RMSE: 1.269283
+  MAE: 1.030764
+Evaluation Completed in 0 ms
+Score Obtained:         0.007561
+ Score: 0.007561   |  Elapsed Time: 0s
+
+Best Configration Score: 0.007561     Iteration: 3
+ n_estimators: 67
+ max_depth: 16
+ min_samples_split: 12
+ max_features: 1
+Iteration Count5/20
+Random Forest configured with:
+  n_estimators: 198
+  max_depth: 19
+  min_samples_split: 11
+  max_features: 9
+  criterion: mse
+Model Configured with Hyperparameters:
+  n_estimators: 198
+  max_depth: 19
+  min_samples_split: 11
+  max_features: 9
+Random Forest trained with 198 trees using 10 features and 1000 samples
+Training Completed in 16 ms
+Random Forest evaluation metrics:
+  R^2: 0.001162
+  MSE: 1.621468
+  RMSE: 1.273369
+  MAE: 1.011898
+Evaluation Completed in 2 ms
+Score Obtained:         0.001162
+ Score: 0.001162   |  Elapsed Time: 0s
+
+Best Configration Score: 0.007561     Iteration: 3
+ n_estimators: 67
+ max_depth: 16
+ min_samples_split: 12
+ max_features: 1
+Iteration Count6/20
+Random Forest configured with:
+  n_estimators: 148
+  max_depth: 17
+  min_samples_split: 17
+  max_features: 1
+  criterion: mse
+Model Configured with Hyperparameters:
+  n_estimators: 148
+  max_depth: 17
+  min_samples_split: 17
+  max_features: 1
+Random Forest trained with 148 trees using 10 features and 1000 samples
+Training Completed in 12 ms
+Random Forest evaluation metrics:
+  R^2: -0.100031
+  MSE: 1.785740
+  RMSE: 1.336316
+  MAE: 1.078755
+Evaluation Completed in 1 ms
+Score Obtained:         -0.100031
+ Score: -0.100031   |  Elapsed Time: 0s
+
+Best Configration Score: 0.007561     Iteration: 3
+ n_estimators: 67
+ max_depth: 16
+ min_samples_split: 12
+ max_features: 1
+Iteration Count7/20
+Random Forest configured with:
+  n_estimators: 78
+  max_depth: 7
+  min_samples_split: 12
+  max_features: 9
+  criterion: mse
+Model Configured with Hyperparameters:
+  n_estimators: 78
+  max_depth: 7
+  min_samples_split: 12
+  max_features: 9
+Random Forest trained with 78 trees using 10 features and 1000 samples
+Training Completed in 6 ms
+Random Forest evaluation metrics:
+  R^2: -0.047914
+  MSE: 1.701135
+  RMSE: 1.304276
+  MAE: 1.042788
+Evaluation Completed in 1 ms
+Score Obtained:         -0.047914
+ Score: -0.047914   |  Elapsed Time: 0s
+
+Best Configration Score: 0.007561     Iteration: 3
+ n_estimators: 67
+ max_depth: 16
+ min_samples_split: 12
+ max_features: 1
+Iteration Count8/20
+Random Forest configured with:
+  n_estimators: 105
+  max_depth: 20
+  min_samples_split: 11
+  max_features: 6
+  criterion: mse
+Model Configured with Hyperparameters:
+  n_estimators: 105
+  max_depth: 20
+  min_samples_split: 11
+  max_features: 6
+Random Forest trained with 105 trees using 10 features and 1000 samples
+Training Completed in 9 ms
+Random Forest evaluation metrics:
+  R^2: -0.116673
+  MSE: 1.812756
+  RMSE: 1.346386
+  MAE: 1.082917
+Evaluation Completed in 1 ms
+Score Obtained:         -0.116673
+ Score: -0.116673   |  Elapsed Time: 0s
+
+Best Configration Score: 0.007561     Iteration: 3
+ n_estimators: 67
+ max_depth: 16
+ min_samples_split: 12
+ max_features: 1
+Iteration Count9/20
+Random Forest configured with:
+  n_estimators: 64
+  max_depth: 14
+  min_samples_split: 15
+  max_features: 3
+  criterion: mse
+Model Configured with Hyperparameters:
+  max_features: 3
+  min_samples_split: 15
+  max_depth: 14
+  n_estimators: 64
+Random Forest trained with 64 trees using 10 features and 1000 samples
+Training Completed in 5 ms
+Random Forest evaluation metrics:
+  R^2: -0.068803
+  MSE: 1.735045
+  RMSE: 1.317211
+  MAE: 1.055763
+Evaluation Completed in 0 ms
+Score Obtained:         -0.068803
+ Score: -0.068803   |  Elapsed Time: 0s
+Early Stopping Triggered at Iteration 9
 Getting best result...
 
 Best configuration found:
-  n_estimators: 132
-  max_depth: 7
-  min_samples_split: 10
-  max_features: 5
-Score: -0.030246
-=== HyperTune examples completed ===
+  n_estimators: 67
+  max_depth: 16
+  min_samples_split: 12
+  max_features: 1
+Score: 0.007561
+Optimization completed in 131 ms
+
+=== Comparing Bayesian Optimization vs Random Search ===
+
+Running Random Search...
+Iteration Count1/25
+ Score: -0.087583   |  Elapsed Time: 0s
+
+Best Configration Score: -0.087583     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count2/25
+ Score: -2749.359658   |  Elapsed Time: 0s
+
+Best Configration Score: -0.087583     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count3/25
+ Score: -272.818754   |  Elapsed Time: 0s
+
+Best Configration Score: -0.087583     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count4/25
+ Score: -23015.861232   |  Elapsed Time: 0s
+
+Best Configration Score: -0.087583     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count5/25
+ Score: -0.001145   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count6/25
+ Score: -0.001425   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count7/25
+ Score: -4.013351   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count8/25
+ Score: -106.566690   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count9/25
+ Score: -0.001591   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count10/25
+ Score: -0.001818   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count11/25
+ Score: -27.752575   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count12/25
+ Score: -628.256266   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count13/25
+ Score: -4.474142   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count14/25
+ Score: -0.622558   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count15/25
+ Score: -0.842974   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count16/25
+ Score: -0.014241   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count17/25
+ Score: -8412.655918   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count18/25
+ Score: -546.010922   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count19/25
+ Score: -218.675975   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count20/25
+ Score: -0.069825   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count21/25
+ Score: -2.530009   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count22/25
+ Score: -14.191496   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count23/25
+ Score: -152.138187   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count24/25
+ Score: -0.579756   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+Iteration Count25/25
+ Score: -10832.711675   |  Elapsed Time: 0s
+
+Best Configration Score: -0.001145     Iteration: 4
+ C: 0.041677
+ gamma: 0.411414
+ epsilon: 0.380182
+ kernel: rbf
+
+Running Bayesian Optimization...
+Iteration Count1/25
+ Score: 0.087101   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count2/25
+ Score: -8598.347758   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count3/25
+ Score: -397.828073   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count4/25
+ Score: -16115.492974   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count5/25
+ Score: 0.002792   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count6/25
+ Score: -11080.676082   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count7/25
+ Score: -16.457267   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count8/25
+ Score: -0.754756   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count9/25
+ Score: -0.753913   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count10/25
+ Score: -0.000603   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count11/25
+ Score: -0.021647   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count12/25
+ Score: -42693.580909   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count13/25
+ Score: -89.787924   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count14/25
+ Score: 0.010790   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count15/25
+ Score: 0.003185   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count16/25
+ Score: -0.000676   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count17/25
+ Score: -738.792965   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count18/25
+ Score: -4037.157465   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count19/25
+ Score: -0.030972   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count20/25
+ Score: -1518.564262   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count21/25
+ Score: -48437.721474   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count22/25
+ Score: -698.536858   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count23/25
+ Score: -1783.673697   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count24/25
+ Score: -0.006751   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+Iteration Count25/25
+ Score: -0.121706   |  Elapsed Time: 0s
+
+Best Configration Score: 0.087101     Iteration: 0
+ C: 0.033330
+ gamma: 0.018429
+ epsilon: 0.891253
+ kernel: linear
+
+=== Optimization Results Comparison ===
+
+Random Search Results:
+  Best Score: -0.001145
+  Execution Time: 57 ms
+  Best Configuration:
+    C: 0.041677
+    gamma: 0.411414
+    epsilon: 0.380182
+    kernel: rbf
+
+Bayesian Optimization Results:
+  Best Score: 0.087101
+  Execution Time: 240 ms
+  Best Configuration:
+    C: 0.033330
+    gamma: 0.018429
+    epsilon: 0.891253
+    kernel: linear
+
+Performance Difference:
+  Score Improvement: +0.088246 (+7709.587250%)
+  Time Difference: +321.052632%
+
+=== HyperTune Bayesian Optimization Examples completed ===
 Program ended with exit code: 0

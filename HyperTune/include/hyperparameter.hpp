@@ -119,6 +119,9 @@ public:
     float getUpper() const;
     
     std::string toString() const override;
+    Distribution getDistribution() const {
+        return distribution_;
+    }
 
 private:
     /// The lower and upper range, as well as the set distribution category

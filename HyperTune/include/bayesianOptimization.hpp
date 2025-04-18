@@ -244,24 +244,39 @@ inline Vector operator*(const Matrix& m, const Vector& v) {
     return result;
 }
 
+// Keep your existing Matrix and Vector classes unchanged
+
 /// Forward declarations
 class GaussianProcess;
 class AcquisitionFunction;
 
+/// Available kernel types for the Gaussian Process
+enum class KernelType {
+    RBF,          // Radial Basis Function (Gaussian)
+    MATERN,       // Matérn kernel with nu=5/2
+    LINEAR        // Linear kernel
+};
+
+/// Available acquisition function types
+enum class AcquisitionFunctionType {
+    EI,           // Expected Improvement
+    UCB,          // Upper Confidence Bound
+    PI            // Probability of Improvement
+};
+
 /// Bayesian Optimization search strategy.
-/// Uses a Gaussian Process surrogate model to model the objective function
-/// and an acquisition function to select the next point to evaluate.
 class BayesianOptimization: public SearchStrategy {
 public:
-    /// Constructor for BayesianOptimization.
-    /// @param searchSpace The hyperparameter search space
-    /// @param rng Random number generator
-    /// @param initialSamples Number of random samples to use for initialization
-    /// @param explorationFactor Trade-off between exploration and exploitation (kappa in UCB)
-    BayesianOptimization(const SearchSpace& searchSpace,
-                        std::mt19937& rng,
-                        int initialSamples = 5,
-                        double explorationFactor = 2.0);
+    /// Constructor with enhanced parameters
+    BayesianOptimization(
+        const SearchSpace& searchSpace,
+        std::mt19937& rng,
+        int initialSamples = 10,                               // Increased from 5 to 10
+        double explorationFactor = 2.0,
+        KernelType kernelType = KernelType::RBF,               // Default to RBF kernel
+        AcquisitionFunctionType acqType = AcquisitionFunctionType::EI,  // Default to EI
+        bool adaptExplorationFactor = true                     // Adapt kappa over time
+    );
     
     ~BayesianOptimization() override;
     
@@ -281,6 +296,15 @@ private:
     /// Use random search for the initial samples
     bool needsInitialSampling() const;
     
+    /// Enhanced acquisition function maximization (replaces random search)
+    Vector maximizeAcquisitionFunction(const GaussianProcess& gp, const Matrix& bounds) const;
+    
+    /// Local optimization to refine a promising point
+    Vector localOptimize(const Vector& startPoint, const GaussianProcess& gp, const Matrix& bounds) const;
+    
+    /// Adapt exploration-exploitation trade-off based on iteration
+    void updateExplorationFactor();
+    
     /// Map from hyperparameter names to their indices in the vector representation
     std::unordered_map<std::string, int> paramIndices_;
     
@@ -296,6 +320,7 @@ private:
     
     /// Exploration-exploitation trade-off parameter
     double explorationFactor_;
+    double initialExplorationFactor_;
     
     /// Matrices to store the training data for the surrogate model
     Matrix X_; /// Normalized configurations
@@ -303,12 +328,20 @@ private:
     
     /// Counter for initialization phase
     int initCounter_;
+    
+    /// Settings for the Bayesian optimization
+    KernelType kernelType_;
+    AcquisitionFunctionType acqType_;
+    bool adaptExplorationFactor_;
+    
+    /// Cache of previous evaluations to avoid redundant ones
+    std::unordered_map<std::string, double> evaluationCache_;
 };
 
-/// Gaussian Process model for Bayesian Optimization
+/// Enhanced Gaussian Process model for Bayesian Optimization
 class GaussianProcess {
 public:
-    GaussianProcess(double alpha = 1e-6);
+    GaussianProcess(KernelType kernelType = KernelType::RBF, double alpha = 1e-6);
     
     /// Fit the GP model to the training data
     void fit(const Matrix& X, const Vector& y);
@@ -319,12 +352,27 @@ public:
     /// Get the log marginal likelihood of the model
     double logMarginalLikelihood() const;
     
-    /// Optimize hyperparameters (kernel parameters)
+    /// Enhanced optimization of hyperparameters using gradient-based method
     void optimizeHyperparameters();
     
+    /// Getter for the current kernel type
+    KernelType getKernelType() const { return kernelType_; }
+    
 private:
-    /// Compute the RBF kernel matrix
+    /// Compute kernel matrix based on the selected kernel type
     Matrix computeKernel(const Matrix& X1, const Matrix& X2) const;
+    
+    /// RBF (Gaussian) kernel
+    double rbfKernel(const Vector& x1, const Vector& x2) const;
+    
+    /// Matérn kernel with nu=5/2
+    double maternKernel(const Vector& x1, const Vector& x2) const;
+    
+    /// Linear kernel
+    double linearKernel(const Vector& x1, const Vector& x2) const;
+    
+    /// Approximate gradient of log likelihood w.r.t. kernel hyperparameters
+    std::vector<double> gradientLogLikelihood() const;
     
     /// Kernel parameters
     double lengthScale_;
@@ -344,6 +392,9 @@ private:
     
     /// Flag to check if the model has been fitted
     bool fitted_;
+    
+    /// Type of kernel to use
+    KernelType kernelType_;
 };
 
 /// Base class for acquisition functions
@@ -354,10 +405,15 @@ public:
     /// Calculate the acquisition value at a given point
     virtual double operator()(const Vector& x, const GaussianProcess& gp) const = 0;
     
-    /// Find the point that maximizes the acquisition function
-    virtual Vector maximize(const GaussianProcess& gp,
-                           const Matrix& bounds,
-                           std::mt19937& rng) const;
+    /// Improved optimization of acquisition function (hybrid global-local)
+    Vector maximize(const GaussianProcess& gp, const Matrix& bounds, std::mt19937& rng) const;
+    
+protected:
+    /// Helper function to perform local optimization with numerical gradient
+    Vector localOptimize(const Vector& startPoint, const GaussianProcess& gp, const Matrix& bounds) const;
+    
+    /// Compute numerical gradient of acquisition function
+    Vector computeGradient(const Vector& x, const GaussianProcess& gp, double epsilon = 1e-5) const;
 };
 
 /// Expected Improvement acquisition function
@@ -385,9 +441,30 @@ public:
     
     double operator()(const Vector& x, const GaussianProcess& gp) const override;
     
+    /// Update the kappa value (for adaptive exploration)
+    void setKappa(double kappa) { kappa_ = kappa; }
+    
 private:
     /// Trade-off parameter between exploration and exploitation
     double kappa_;
+};
+
+/// Probability of Improvement acquisition function (new)
+class ProbabilityOfImprovement : public AcquisitionFunction {
+public:
+    ProbabilityOfImprovement(double xi = 0.01);
+    
+    double operator()(const Vector& x, const GaussianProcess& gp) const override;
+    
+    /// Set the current best objective value
+    void updateBestValue(double value);
+    
+private:
+    /// Trade-off parameter between exploration and exploitation
+    double xi_;
+    
+    /// Current best observed value
+    double bestValue_;
 };
 
 } // namespace hypertune
