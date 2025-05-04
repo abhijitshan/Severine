@@ -4,7 +4,7 @@
 //
 //  Created by Abhijit Shanbhag on 18/04/25.
 //
-
+#define _USE_MATH_DEFINES
 #include "../include/bayesianOptimization.hpp"
 #include "../include/hyperparameter.hpp"
 #include <iostream>

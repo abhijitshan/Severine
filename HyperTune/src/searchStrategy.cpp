@@ -7,6 +7,7 @@
 
 #include "../include/searchStrategy.hpp"
 #include <algorithm>
+#include <stdexcept>
 
 namespace hypertune {
 

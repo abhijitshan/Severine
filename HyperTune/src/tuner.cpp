@@ -82,6 +82,8 @@ void Tuner::tune(){
                 std::cout << std::endl;
             }
         }
+
+        notifyIterationComplete(result, index);
     }
 }
 const EvaluationResult& Tuner::getBestResult() const {
@@ -135,4 +137,25 @@ bool Tuner::shouldEarlyStop() const {
             return false;
     }
 }
+
+void Tuner::registerObserver(std::shared_ptr<TunerObserver> observer) {
+    observers_.push_back(observer);
 }
+
+void Tuner::unregisterObserver(std::shared_ptr<TunerObserver> observer) {
+    observers_.erase(
+        std::remove_if(
+            observers_.begin(),
+            observers_.end(),
+            [&](const std::shared_ptr<TunerObserver>& o) { return o == observer; }
+        ),
+        observers_.end()
+    );
+}
+
+void Tuner::notifyIterationComplete(const EvaluationResult& result, int iteration) {
+    for (auto& observer : observers_) {
+        observer->onIterationComplete(result, iteration);
+    }
+}
+} // namespace hypertune

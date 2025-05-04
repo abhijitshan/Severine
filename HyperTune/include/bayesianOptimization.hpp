@@ -14,6 +14,7 @@
 #include "limits"
 #include "memory"
 #include "random"
+#include <stdexcept>
 
 namespace hypertune {
 
