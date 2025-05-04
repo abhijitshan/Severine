@@ -43,8 +43,8 @@ MinGW-w64 provides the GCC compiler and make utility for Windows.
    ├── HyperTune/
    │   └── main.cpp
    ├── openmp/
-   │   ├── libomp.dll      (Required for Windows)
-   │   ├── libomp.lib      (Required for Windows)
+   │   ├── libgomp-1.dll      (Required for Windows)
+   │   ├── libgomp.a          (Required for Windows)
    │   ├── omp.h
    │   └── ... (other OpenMP files)
    └── Makefile
