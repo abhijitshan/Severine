@@ -1,0 +1,55 @@
+Single Thread:
+
+=== HyperTune Benchmarking Tool ===
+Started at: Mon May  5 14:33:56 2025
+Benchmark results will be saved to: hypertune_benchmark_results
+
+Generating synthetic dataset...
+Dataset generated: 1000 training samples, 200 test samples, 20 features.
+
+=== Benchmarking LinearRegression ===
+Iterations: 100 | Threads: 1
+
+Running benchmark for random search...
+... random search complete.
+
+=== Benchmark Summary ===
+
+Strategy       Best Score          Total Time (s)    Peak Memory (KB)    Best Configuration
+----------------------------------------------------------------------------------------------------
+random         0.9998303985        2.5823            19920               { alpha=0.00011254, tol=0.00009077, fit_intercept=false, max_iter=4887, solver=lsqr }
+----------------------------------------------------------------------------------------------------
+Results saved to:
+ - hypertune_benchmark_results/LinearRegression_benchmark.csv
+ - hypertune_benchmark_results/LinearRegression_benchmark_summary.csv
+
+Benchmarking complete!
+Program ended with exit code: 0
+
+
+Multithreaded
+=== HyperTune Benchmarking Tool ===
+Started at: Mon May  5 14:39:04 2025
+Benchmark results will be saved to: hypertune_benchmark_results
+
+Generating synthetic dataset...
+Dataset generated: 1000 training samples, 200 test samples, 20 features.
+
+=== Benchmarking LinearRegression ===
+Iterations: 100 | Threads: 10
+
+Running benchmark for random search...
+... random search complete.
+
+=== Benchmark Summary ===
+
+Strategy       Best Score          Total Time (s)    Peak Memory (KB)    Best Configuration
+----------------------------------------------------------------------------------------------------
+random         0.9998304003        0.4792            27296               { alpha=0.00010474, tol=0.00002683, fit_intercept=false, max_iter=2539, solver=lsqr }
+----------------------------------------------------------------------------------------------------
+Results saved to:
+ - hypertune_benchmark_results/LinearRegression_benchmark.csv
+ - hypertune_benchmark_results/LinearRegression_benchmark_summary.csv
+
+Benchmarking complete!
+Program ended with exit code: 0

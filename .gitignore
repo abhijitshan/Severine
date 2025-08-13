@@ -1,0 +1,20 @@
+# Ignore user-specific Xcode project files
+*.xcuserstate
+*.xcscmblueprint
+
+# Ignore workspace-related files
+*.xcworkspace/
+*.xcuserdata/
+project.xcworkspace/
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+
+# Optional: ignore result bundles
+*.xcresult
+
+# Optional: ignore derived data & build artifacts
+DerivedData/
+build/
+
+# Ignore logs
+*.log

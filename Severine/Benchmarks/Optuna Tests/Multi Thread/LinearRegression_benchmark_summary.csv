@@ -1,0 +1,3 @@
+Strategy,Best Score,Total Time (s),Peak Memory (MB),Best Config
+random,0.9999996949357297,2.883352041244507,196.78,"alpha=0.0020495251729851292; fit_intercept=True; max_iter=2983; solver=lsqr; tol=0.0002629522952179784"
+bayesian,0.9999996951889386,5.8134942054748535,201.45,"alpha=0.0001956411998697699; fit_intercept=True; max_iter=4592; solver=lsqr; tol=9.296182138922613e-05"

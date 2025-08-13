@@ -1,0 +1,418 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AEFEADDD2E4CF4CE009D92D9 /* libomp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AE263AF02D869D51002D569D /* libomp.dylib */; };
+		AEFEADDE2E4CF4D5009D92D9 /* libomp.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = AE263AF02D869D51002D569D /* libomp.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AE263AE22D869C33002D569D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = usr/share/man/man1;
+			dstSubfolderSpec = 10;
+			files = (
+				AEFEADDE2E4CF4D5009D92D9 /* libomp.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AE263AE42D869C33002D569D /* Severine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Severine; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE263AF02D869D51002D569D /* libomp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libomp.dylib; sourceTree = "<group>"; };
+		AE263AF12D869D51002D569D /* omp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = omp.h; sourceTree = "<group>"; };
+		AE263AF22D869D51002D569D /* omp-tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "omp-tools.h"; sourceTree = "<group>"; };
+		AE263AF32D869D51002D569D /* ompt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ompt.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AE6003EB2DC8B9C4001C5AEA /* Exceptions for "Severine" folder in "Severine" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Benchmarks/Enchanced Data Matrix Adapter Tests/Tolerance Benchmarking.cpp",
+			);
+			target = AE263AE32D869C33002D569D /* Severine */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		AE263AE62D869C33002D569D /* Severine */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				AE6003EB2DC8B9C4001C5AEA /* Exceptions for "Severine" folder in "Severine" target */,
+			);
+			explicitFileTypes = {
+				"Benchmarks/Benchmarking Report/Report.md" = net.daringfireball.markdown;
+				"Benchmarks/Enchanced Data Matrix Adapter Tests/Tolerance Benchmarking.cpp" = sourcecode.cpp.cpp;
+			};
+			path = Severine;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AE263AE12D869C33002D569D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEFEADDD2E4CF4CE009D92D9 /* libomp.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AE263ADB2D869C33002D569D = {
+			isa = PBXGroup;
+			children = (
+				AE263AF42D869D51002D569D /* openmp */,
+				AE263AE62D869C33002D569D /* Severine */,
+				AEFEADDC2E4CF4CE009D92D9 /* Frameworks */,
+				AE263AE52D869C33002D569D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AE263AE52D869C33002D569D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AE263AE42D869C33002D569D /* Severine */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AE263AF42D869D51002D569D /* openmp */ = {
+			isa = PBXGroup;
+			children = (
+				AE263AF02D869D51002D569D /* libomp.dylib */,
+				AE263AF12D869D51002D569D /* omp.h */,
+				AE263AF22D869D51002D569D /* omp-tools.h */,
+				AE263AF32D869D51002D569D /* ompt.h */,
+			);
+			path = openmp;
+			sourceTree = "<group>";
+		};
+		AEFEADDC2E4CF4CE009D92D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AE263AE32D869C33002D569D /* Severine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE263AEB2D869C33002D569D /* Build configuration list for PBXNativeTarget "Severine" */;
+			buildPhases = (
+				AE263AE02D869C33002D569D /* Sources */,
+				AE263AE12D869C33002D569D /* Frameworks */,
+				AE263AE22D869C33002D569D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AE263AE62D869C33002D569D /* Severine */,
+			);
+			name = Severine;
+			packageProductDependencies = (
+			);
+			productName = HyperTune;
+			productReference = AE263AE42D869C33002D569D /* Severine */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AE263ADC2D869C33002D569D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1630;
+				TargetAttributes = {
+					AE263AE32D869C33002D569D = {
+						CreatedOnToolsVersion = 16.2;
+						LastSwiftMigration = 1630;
+					};
+				};
+			};
+			buildConfigurationList = AE263ADF2D869C33002D569D /* Build configuration list for PBXProject "Severine" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AE263ADB2D869C33002D569D;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = AE263AE52D869C33002D569D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AE263AE32D869C33002D569D /* Severine */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AE263AE02D869C33002D569D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AE263AE92D869C33002D569D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = V78LTDQ4JM;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		AE263AEA2D869C33002D569D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = V78LTDQ4JM;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		AE263AEC2D869C33002D569D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/openmp\"";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/openmp",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/numpy/_core/lib",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/numpy/random/lib",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/sklearn/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-Xclang",
+					"-fopenmp",
+				);
+				OTHER_LDFLAGS = "-lomp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		AE263AED2D869C33002D569D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/openmp\"";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/openmp",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/numpy/_core/lib",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/numpy/random/lib",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/sklearn/.dylibs",
+					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-Xclang",
+					"-fopenmp",
+				);
+				OTHER_LDFLAGS = "-lomp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AE263ADF2D869C33002D569D /* Build configuration list for PBXProject "Severine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE263AE92D869C33002D569D /* Debug */,
+				AE263AEA2D869C33002D569D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE263AEB2D869C33002D569D /* Build configuration list for PBXNativeTarget "Severine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE263AEC2D869C33002D569D /* Debug */,
+				AE263AED2D869C33002D569D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AE263ADC2D869C33002D569D /* Project object */;
+}
