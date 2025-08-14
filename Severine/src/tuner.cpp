@@ -2,12 +2,11 @@
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
-#include <omp.h>
 #include <thread>
 namespace severine {
 Tuner::Tuner(std::shared_ptr<ModelInterface> model, std::shared_ptr<SearchStrategy> strategy, const TunerConfig& config)
     : model_(model), strategy_(strategy), config_(config), rng_(rd_()) {
-    omp_set_num_threads(config_.numThreads);
+    // Removed omp_set_num_threads call
 }
 void Tuner::tune() {
     startTime_ = std::chrono::high_resolution_clock::now();
@@ -104,34 +103,21 @@ void Tuner::tuneSequentialOpenMP() {
         if (config_.verbose) {
             std::cout << "Processing batch of " << batchSize << " configurations\n";
         }
-        #pragma omp parallel for default(none) \
-            shared(configBatch, resultBatch, iterationIndices, std::cout, batchSize, config_)
+        // Serial loop replacing OpenMP parallel for
         for (int i = 0; i < batchSize; i++) {
             if (config_.verbose) {
-                #pragma omp critical
-                {
-                    std::cout << "Thread " << omp_get_thread_num()
-                              << " evaluating configuration " << (iterationIndices[i] + 1) << "\n";
-                }
+                std::cout << "Thread 0 evaluating configuration " << (iterationIndices[i] + 1) << "\n";
             }
             try {
                 std::shared_ptr<ModelInterface> modelClone = model_->clone();
                 resultBatch[i] = evaluateConfiguration(configBatch[i], iterationIndices[i]);
                 if (config_.verbose) {
-                    #pragma omp critical
-                    {
-                        std::cout << "Thread " << omp_get_thread_num()
-                                  << " completed evaluation " << (iterationIndices[i] + 1)
-                                  << " with score: " << resultBatch[i].score << "\n";
-                    }
+                    std::cout << "Thread 0 completed evaluation " << (iterationIndices[i] + 1)
+                              << " with score: " << resultBatch[i].score << "\n";
                 }
             } catch (const std::exception& e) {
-                #pragma omp critical
-                {
-                    std::cerr << "Exception in thread " << omp_get_thread_num()
-                              << " evaluating configuration " << (iterationIndices[i] + 1)
-                              << ": " << e.what() << std::endl;
-                }
+                std::cerr << "Exception in thread 0 evaluating configuration " << (iterationIndices[i] + 1)
+                          << ": " << e.what() << std::endl;
                 resultBatch[i] = EvaluationResult{
                     configBatch[i],
                     -std::numeric_limits<double>::infinity(),

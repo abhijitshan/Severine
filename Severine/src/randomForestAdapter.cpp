@@ -5,7 +5,6 @@
 #include <cmath>
 #include <stdexcept>
 #include <unordered_set>
-#include <omp.h>
 namespace severine {
 double RandomForestAdapter::DecisionTree::predict(const std::vector<double>& features) const {
     size_t node_idx = 0;
@@ -90,18 +89,11 @@ void RandomForestAdapter::trainModel() {
     actual_max_features = std::min(actual_max_features, static_cast<int>(n_features));
     trees_.clear();
     trees_.resize(nEstimators_);
-    #pragma omp parallel for default(none) \
-        shared(trees_, n_samples, n_features, actual_max_features, xTrain_, yTrain_, std::cout) \
-        firstprivate(maxDepth_, nEstimators_, verbose_)
     for (int i = 0; i < nEstimators_; ++i) {
-        unsigned int tree_seed = omp_get_thread_num() * 1000 + i;
+        unsigned int tree_seed = 0 * 1000 + i;
         std::mt19937 thread_rng(tree_seed);
         if (verbose_) {
-            #pragma omp critical
-            {
-                std::cout << "Thread " << omp_get_thread_num()
-                          << " training tree " << (i + 1) << " of " << nEstimators_ << std::endl;
-            }
+            std::cout << "Thread 0 training tree " << (i + 1) << " of " << nEstimators_ << std::endl;
         }
         std::vector<size_t> bootstrap_indices(n_samples);
         std::uniform_int_distribution<size_t> sample_dist(0, n_samples - 1);
@@ -142,11 +134,7 @@ void RandomForestAdapter::trainModel() {
             tree.leafValues[leaf_idx] = leaf_dist(thread_rng);
         }
         if (verbose_) {
-            #pragma omp critical
-            {
-                std::cout << "Thread " << omp_get_thread_num()
-                          << " completed tree " << (i + 1) << std::endl;
-            }
+            std::cout << "Thread 0 completed tree " << (i + 1) << std::endl;
         }
     }
     if (verbose_) {
@@ -160,42 +148,14 @@ double RandomForestAdapter::evaluateModel() {
         throw std::runtime_error("Cannot evaluate model: no test data");
     }
     const size_t n_samples = xTest_.size();
-    yPred_.resize(n_samples, 0.0);
-    #pragma omp parallel default(none) \
-        shared(n_samples, yPred_, xTest_, trees_, std::cout) \
-        firstprivate(verbose_)
-    {
-        std::vector<double> local_predictions(n_samples, 0.0);
-        int num_threads = omp_get_num_threads();
-        int thread_id = omp_get_thread_num();
-        int trees_per_thread = (trees_.size() + num_threads - 1) / num_threads;
-        int start_tree = thread_id * trees_per_thread;
-        int end_tree = std::min(start_tree + trees_per_thread, static_cast<int>(trees_.size()));
-        if (verbose_) {
-            #pragma omp critical
-            {
-                std::cout << "Thread " << thread_id << " processing trees "
-                          << start_tree << " to " << end_tree - 1 << std::endl;
-            }
+    yPred_.assign(n_samples, 0.0);
+    for (int t = 0; t < static_cast<int>(trees_.size()); t++) {
+        for (size_t i = 0; i < n_samples; ++i) {
+            yPred_[i] += trees_[t].predict(xTest_[i]);
         }
-        for (int t = start_tree; t < end_tree; t++) {
-            for (size_t i = 0; i < n_samples; ++i) {
-                local_predictions[i] += trees_[t].predict(xTest_[i]);
-            }
-        }
-        #pragma omp critical
-        {
-            for (size_t i = 0; i < n_samples; ++i) {
-                yPred_[i] += local_predictions[i];
-            }
-        }
-        #pragma omp barrier
-        #pragma omp single
-        {
-            for (size_t i = 0; i < n_samples; ++i) {
-                yPred_[i] /= trees_.size();
-            }
-        }
+    }
+    for (size_t i = 0; i < n_samples; ++i) {
+        yPred_[i] /= trees_.size();
     }
     double r2 = calculateR2();
     if (verbose_) {
