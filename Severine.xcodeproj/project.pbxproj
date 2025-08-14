@@ -7,18 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AEFEADDD2E4CF4CE009D92D9 /* libomp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AE263AF02D869D51002D569D /* libomp.dylib */; };
-		AEFEADDE2E4CF4D5009D92D9 /* libomp.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = AE263AF02D869D51002D569D /* libomp.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		AEF35DC92E4E5C73007A10F2 /* libmlx.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = AEF35DC82E4E5C73007A10F2 /* libmlx.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		AEF35DCB2E4E5DCA007A10F2 /* libmlx.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF35DCA2E4E5DCA007A10F2 /* libmlx.dylib */; };
+		AEF35DCD2E4E6273007A10F2 /* mlx.metallib in CopyFiles */ = {isa = PBXBuildFile; fileRef = AEF35DCC2E4E6273007A10F2 /* mlx.metallib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		AEF35DCF2E4E651B007A10F2 /* mlx.metallib in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF35DCC2E4E6273007A10F2 /* mlx.metallib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		AE263AE22D869C33002D569D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = usr/share/man/man1;
-			dstSubfolderSpec = 10;
+			dstPath = "";
+			dstSubfolderSpec = 6;
 			files = (
-				AEFEADDE2E4CF4D5009D92D9 /* libomp.dylib in CopyFiles */,
+				AEF35DCD2E4E6273007A10F2 /* mlx.metallib in CopyFiles */,
+				AEF35DC92E4E5C73007A10F2 /* libmlx.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -26,10 +29,9 @@
 
 /* Begin PBXFileReference section */
 		AE263AE42D869C33002D569D /* Severine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Severine; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE263AF02D869D51002D569D /* libomp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libomp.dylib; sourceTree = "<group>"; };
-		AE263AF12D869D51002D569D /* omp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = omp.h; sourceTree = "<group>"; };
-		AE263AF22D869D51002D569D /* omp-tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "omp-tools.h"; sourceTree = "<group>"; };
-		AE263AF32D869D51002D569D /* ompt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ompt.h; sourceTree = "<group>"; };
+		AEF35DC82E4E5C73007A10F2 /* libmlx.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libmlx.dylib; sourceTree = "<group>"; };
+		AEF35DCA2E4E5DCA007A10F2 /* libmlx.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmlx.dylib; path = "../../../../../Library/Python/3.9/lib/python/site-packages/mlx/lib/libmlx.dylib"; sourceTree = "<group>"; };
+		AEF35DCC2E4E6273007A10F2 /* mlx.metallib */ = {isa = PBXFileReference; lastKnownFileType = "archive.metal-library"; name = mlx.metallib; path = "../../../../../Library/Python/3.9/lib/python/site-packages/mlx/lib/mlx.metallib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -62,7 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEFEADDD2E4CF4CE009D92D9 /* libomp.dylib in Frameworks */,
+				AEF35DCF2E4E651B007A10F2 /* mlx.metallib in Frameworks */,
+				AEF35DCB2E4E5DCA007A10F2 /* libmlx.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +75,8 @@
 		AE263ADB2D869C33002D569D = {
 			isa = PBXGroup;
 			children = (
-				AE263AF42D869D51002D569D /* openmp */,
+				AEF35DCC2E4E6273007A10F2 /* mlx.metallib */,
+				AEF35DC82E4E5C73007A10F2 /* libmlx.dylib */,
 				AE263AE62D869C33002D569D /* Severine */,
 				AEFEADDC2E4CF4CE009D92D9 /* Frameworks */,
 				AE263AE52D869C33002D569D /* Products */,
@@ -87,20 +91,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AE263AF42D869D51002D569D /* openmp */ = {
-			isa = PBXGroup;
-			children = (
-				AE263AF02D869D51002D569D /* libomp.dylib */,
-				AE263AF12D869D51002D569D /* omp.h */,
-				AE263AF22D869D51002D569D /* omp-tools.h */,
-				AE263AF32D869D51002D569D /* ompt.h */,
-			);
-			path = openmp;
-			sourceTree = "<group>";
-		};
 		AEFEADDC2E4CF4CE009D92D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AEF35DCA2E4E5DCA007A10F2 /* libmlx.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -137,7 +131,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1630;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					AE263AE32D869C33002D569D = {
 						CreatedOnToolsVersion = 16.2;
@@ -229,12 +223,20 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/Users/abhijitshanbhag/Library/Python/3.9/lib/python/site-packages/mlx/include";
+				LIBRARY_SEARCH_PATHS = "/Users/abhijitshanbhag/Library/Python/3.9/lib/python/site-packages/mlx/lib";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lmlx",
+					"-Wl,-rpath,/Users/abhijitshanbhag/Library/Python/3.9/lib/python/site-packages/mlx/lib",
+					"-Wl,-no_fixup_chains",
+				);
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 			};
 			name = Debug;
 		};
@@ -286,58 +288,58 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/Users/abhijitshanbhag/Library/Python/3.9/lib/python/site-packages/mlx/include";
+				LIBRARY_SEARCH_PATHS = "/Users/abhijitshanbhag/Library/Python/3.9/lib/python/site-packages/mlx/lib";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"-lmlx",
+					"-Wl,-rpath,/Users/abhijitshanbhag/Library/Python/3.9/lib/python/site-packages/mlx/lib",
+					"-Wl,-no_fixup_chains",
+				);
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 			};
 			name = Release;
 		};
 		AE263AEC2D869C33002D569D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				AUTOMATION_APPLE_EVENTS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/openmp\"";
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
+				HEADER_SEARCH_PATHS = "/Users/abhijitshanbhag/Library/Python/3.9/lib/python/site-packages/mlx/include";
+				LD_RUNPATH_SEARCH_PATHS = "/Users/abhijitshanbhag/Library/Python/3.9/lib/python/site-packages/mlx/lib";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/openmp",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/numpy/_core/lib",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/numpy/random/lib",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/sklearn/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv",
+					"/Users/abhijitshanbhag/Library/Python/3.9/lib/python/site-packages/mlx/lib",
+					"$(USER_LIBRARY_DIR)/Python/3.9/lib/python/site-packages/mlx/lib",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-Xclang",
 					"-fopenmp",
 				);
-				OTHER_LDFLAGS = "-lomp";
+				OTHER_LDFLAGS = (
+					"-lmlx",
+					"-Wl,-no_adhoc_codesign",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
 			};
@@ -346,47 +348,39 @@
 		AE263AED2D869C33002D569D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				AUTOMATION_APPLE_EVENTS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/openmp\"";
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
+				HEADER_SEARCH_PATHS = "/Users/abhijitshanbhag/Library/Python/3.9/lib/python/site-packages/mlx/include";
+				LD_RUNPATH_SEARCH_PATHS = "/Users/abhijitshanbhag/Library/Python/3.9/lib/python/site-packages/mlx/lib";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/openmp",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/numpy/_core/lib",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/numpy/random/lib",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/PIL/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/scipy/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv/lib/python3.9/site-packages/sklearn/.dylibs",
-					"$(PROJECT_DIR)/HyperTune/Benchmarks/Optuna\\ Benchmarking/.venv",
+					"/Users/abhijitshanbhag/Library/Python/3.9/lib/python/site-packages/mlx/lib",
+					"$(USER_LIBRARY_DIR)/Python/3.9/lib/python/site-packages/mlx/lib",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-Xclang",
 					"-fopenmp",
 				);
-				OTHER_LDFLAGS = "-lomp";
+				OTHER_LDFLAGS = (
+					"-lmlx",
+					"-Wl,-no_adhoc_codesign",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = YES;
 				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
